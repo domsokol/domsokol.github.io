@@ -4,8 +4,8 @@ var pics = [
 	"imgs/kitty_basket.jpg", 
 	"imgs/kitty_laptop.jpg",
 	"imgs/kitty_door.jpg",
-	"imgs/kitty_sink.jpg",
-	"imgs/kitty_wall.jpg"
+	"imgs/kitty_wall.jpg",
+	"imgs/kitty_sink.jpg"
 ]
 
 var btn = document.querySelector("button");
