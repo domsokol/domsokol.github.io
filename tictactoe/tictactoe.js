@@ -29,7 +29,7 @@ function computerTakeTurn() {
     
     // check if chosen box is empty
     if (document.getElementById(idName).innerHTML == "") {
-      document.getElementById(idName).innerHTML == currentPlayer;
+      document.getElementById(idName).innerHTML = currentPlayer;
       console.log(currentPlayer);
       break;
     } // if
