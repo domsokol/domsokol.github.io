@@ -21,18 +21,69 @@ function newGame() {
 // randomly chooses a free box for computer
 function computerTakeTurn() {
   let idName = "";
+  let rand = 0;
   
-  // choose random boxes until empty box is found
-  do {
-    let rand = parseInt((Math.random() * 9) + 1); // 1-9
-    idName = idNames[rand - 1];
+  // if X chooses middle first
+  if (numTurns == 1 && document.getElementById("five").innerHTML != "") {
+    do {
+      rand = parseInt((Math.random() * 4) + 1); 
+      if (rand == 1) {
+        idName = idNames[0];
+      } else if (rand == 2) {
+        idName = idNames[2];
+      } else if (rand == 3) {
+        idName = idNames[6];
+      } else if (rand == 4) {
+        idName = idNames[8];
+      }
     
-    // check if chosen box is empty
-    if (document.getElementById(idName).innerHTML == "") {
-      document.getElementById(idName).innerHTML = currentPlayer;
-      break;
-    } // if
-  } while(true);
+      // check if chosen box is empty
+      if (document.getElementById(idName).innerHTML == "") {
+        document.getElementById(idName).innerHTML = currentPlayer;
+        break;
+      
+      } // if
+      
+    } while(true)
+
+  return;
+  } else if (numTurns == 1 && (document.getElementById("one").innerHTML != "" || document.getElementById("three").innerHTML != "" || document.getElementById("seven").innerHTML != "" || document.getElementById("nine").innerHTML != "")) {
+    do {
+      rand = parseInt((Math.random() * 4) + 1); 
+      if (rand == 1) {
+        idName = idNames[0];
+      } else if (rand == 2) {
+        idName = idNames[2];
+      } else if (rand == 3) {
+        idName = idNames[6];
+      } else if (rand == 4) {
+        idName = idNames[8];
+      }
+    
+      // check if chosen box is empty
+      if (document.getElementById(idName).innerHTML == "") {
+        document.getElementById(idName).innerHTML = currentPlayer;
+        break;
+      
+      } // if
+      
+    } while(true)
+
+  return;
+  } else {
+      do {
+        rand = parseInt((Math.random() * 9) + 1); // 1-9
+        idName = idNames[rand - 1];
+    
+        // check if chosen box is empty
+        if (document.getElementById(idName).innerHTML == "") {
+          document.getElementById(idName).innerHTML = currentPlayer;
+
+          break;
+        } // if
+      } while(true);
+    } // else
+  
 } // computerTakeTurn
 
 // take player turn
@@ -52,11 +103,9 @@ function playerTakeTurn(e){
     } // if
   } else {
     showLightBox("This box is already selected.", "Please try another.");
-    console.log("This box is already selected, please try another.");
     return;
-  
+    
   } // else
-  
   
 } // playerTakeTurn
 
