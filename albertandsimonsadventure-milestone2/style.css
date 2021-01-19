@@ -1,0 +1,93 @@
+body {
+  background-color: black;
+}
+#gameBoard {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 120px 120px 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px 120px 120px;
+  justify-content: center;
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+#gameBoard div {
+  background-color: #00EE00;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.rider {
+  background-image: url("images/riderStanding.png");
+}
+.tree {
+  background-image: url("images/tree.png");
+}
+.flag {
+  background-image: url("images/flag.png");
+}  
+.rock {
+  background-image: url("images/rock.png");
+}
+.fence {
+  background-image: url("images/fenceTop.png");
+}
+.fenceSide {
+  background-image: url("images/fenceSide.png");
+}
+.water {
+  background-image: url("images/water.png");
+}
+.horseUp {
+  background-image: url("images/horseUp.png");
+}
+.horseLeft {
+  background-image: url("images/horseLeft.png");
+}
+.horseDown {
+  background-image: url("images/horseDown.png");
+}
+.horseRight {
+  background-image: url("images/horseRight.png");
+}
+.horseRideUp {
+  background-image: url("images/horseRiderUp.png");
+}
+.horseRideLeft {
+  background-image: url("images/horseRiderLeft.png");
+}
+.horseRideRight {
+  background-image: url("images/horseRiderRight.png");
+}
+.horseRideDown {
+  background-image: url("images/horseRiderDown.png");
+}
+.jumpUp {
+  background-image: url("images/fenceJumpUp.png");
+}
+.jumpLeft {
+  background-image: url("images/fenceJumpLeft.png");
+}
+.jumpRight {
+  background-image: url("images/fenceJumpRight.png");
+}
+.jumpDown {
+  background-image: url("images/fenceJumpDown.png");
+}
+.enemyUp {
+  background-image: url("images/enemyUp.png");
+}
+.enemyLeft {
+  background-image: url("images/enemyLeft.png");
+}
+.enemyRight {
+  background-image: url("images/enemyRight.png");
+}
+.enemyDown {
+  background-image: url("images/enemyDown.png");
+}
+.bridge {
+  background-color: #800020 !important;
+}
