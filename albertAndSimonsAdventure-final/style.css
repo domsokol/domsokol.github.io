@@ -1,0 +1,179 @@
+body {
+  background-color: black;
+}
+#lives {
+  color: black;
+  font-size: 50px;
+  display: inline; 
+  float: left;
+  background-color: white;
+}
+#gameBoard {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 120px 120px 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px 120px 120px;
+  justify-content: center;
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#gameBoard div {
+  background-color: #d3d3d3;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline;
+  float: left;
+}
+.titleText {
+  color: black;
+  font-family: Verdana, sans-serif;
+  vertical-align: top;
+  text-align: center;
+}
+.message {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-family: Verdana, sans-serif;
+  font-size: 8em;
+  vertical-align: top;
+  text-align: center;
+  line-height: 100vh;
+}
+.money {
+  background-image: url("images/money.png");
+}
+.flag {
+  background-image: url("images/flag.png");
+}  
+.doorHorizontal {
+  background-image: url("images/doorHorizontal.png");
+}
+.doorVertical {
+  background-image: url("images/doorVertical.png");
+}
+.wallVertical {
+  background-image: url("images/wallVertical.png");
+}
+.wallHorizontal {
+  background-image: url("images/wallHorizontal.png");
+}
+.playerUp {
+  background-image: url("images/playerRight.png");
+}
+.playerLeft {
+  background-image: url("images/playerLeft.png");
+}
+.playerDown {
+  background-image: url("images/playerRight.png");
+}
+.playerRight {
+  background-image: url("images/playerRight.png");
+}
+.playerMoneyUp {
+  background-image: url("images/playerMoneyRight.png");
+}
+.playerMoneyLeft {
+  background-image: url("images/playerMoneyLeft.png");
+}
+.playerMoneyRight {
+  background-image: url("images/playerMoneyRight.png");
+}
+.playerMoneyDown {
+  background-image: url("images/playerMoneyRight.png");
+}
+.doorVerticalLeft {
+  background-image: url("images/doorVerticalLeft.png");
+}
+.doorVertialRight {
+  background-image: url("images/doorVerticalRight.png");
+}
+.doorHorizontalLeft {
+  background-image: url("images/doorHorizontalLeft.png");
+}
+.doorHorizontalRight {
+  background-image: url("images/doorHorizontalRight.png");
+}
+.enemyUp {
+  background-image: url("images/enemyUp.png");
+}
+.enemyLeft {
+  background-image: url("images/enemyLeft.png");
+}
+.enemyRight {
+  background-image: url("images/enemyRight.png");
+}
+.enemyDown {
+  background-image: url("images/enemyDown.png");
+}
+/***** Light Box CSS *****/
+
+.hidden {
+  display: none;
+}
+.unhidden {
+  display: block;
+}
+#lightbox {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+#x {
+  position: absolute;
+   top: 10px;
+   right: 10px;
+   width: 30px;
+   height: 30px;
+   z-index: 5;
+}
+#positionMessage {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  width: 100%;
+}
+#boundaryMessage {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 4;
+  padding: 30px;
+  border: thick solid #532e1c;
+  
+}
+
+/***** End Light Box CSS *****/
+#button {
+  display: inline-block;
+  padding: 4px;
+  width: 90px;
+  height: 30px;
+  background-color: #DB492C;
+  color: #D3EB96;
+  vertical-align: top;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.7em;
+  border-radius: 7px;
+  margin: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  -ms-transform: translate(-50%, -90%);
+  transform: translate(-50%, -90%);
+}
