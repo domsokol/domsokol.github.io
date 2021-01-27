@@ -1,12 +1,12 @@
 body {
   background-color: black;
 }
-#lives {
-  color: black;
+#livesLeft {
+  color: white;
   font-size: 50px;
   display: inline; 
   float: left;
-  background-color: white;
+  
 }
 #gameBoard {
   border: 1px solid black;
@@ -92,7 +92,7 @@ body {
 .doorVerticalLeft {
   background-image: url("images/doorVerticalLeft.png");
 }
-.doorVertialRight {
+.doorVerticalRight {
   background-image: url("images/doorVerticalRight.png");
 }
 .doorHorizontalLeft {

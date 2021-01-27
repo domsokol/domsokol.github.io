@@ -1,15 +1,15 @@
 const levels =  [ 
  
     // level 0
-    ["flag", "wallVertical", "", "", "",
-    "doorHorizontal", "wallVertical", "", "", "money",
+    ["flag", "wallVertical", "", "", "money",
+    "doorHorizontal", "wallVertical", "", "wallHorizontal", "wallHorizontal",
     "", "wallVertical", "animate", "animate", "animate",
-    "", "wallVertical", "", "", "",
+    "", "wallVertical", "", "wallHorizontal", "",
     "", "doorVertical", "", "playerUp", ""], 
     
     // level 1
-    ["flag", "wallVertical", "", "", "",
-    "doorHorizontal", "wallVertical", "", "", "money",
+    ["flag", "wallVertical", "money", "", "",
+    "doorHorizontal", "wallVertical", "wallHorizontal", "wallHorizontal", "",
     "animate", "doorVertical animate", "animate", "animate", "animate",
     "", "wallVertical", "", "", "",
     "", "wallVertical", "playerUp", "", ""], 
@@ -19,13 +19,28 @@ const levels =  [
     "animate", "animate", "animate", "animate", "animate",
     "wallHorizontal", "doorHorizontal", "wallHorizontal", "wallHorizontal", "wallHorizontal",
     "", "", "", "", "",
-    "money", "wallVertical", "", "", "playerUp"]
+    "money", "wallVertical", "", "", "playerUp"], 
+    
+    // level 3
+    ["", "wallVertical", "money", "", "",
+    "", "wallVertical", "wallHorizontal", "wallHorizontal", "",
+    "animate", "animate", "animate", "animate", "animate",
+    "", "wallVertical", "", "wallHorizontal", "wallHorizontal",
+    "playerUp", "wallVertical", "", "doorVertical", "flag"],
+    
+    // level 4
+    ["", "", "", "", "money",
+    "", "wallHorizontal", "wallHorizontal", "wallHorizontal", "wallHorizontal",
+    "animate", "animate", "animate", "animate", "",
+    "", "wallVertical", "", "wallVertical", "doorHorizontal",
+    "playerUp", "wallVertical", "", "wallVertical", "flag"]
     
 ]; // end of levels
 
 const gridBoxes = document.querySelectorAll("#gameBoard div");
 const noPassObstacles = ["wallVertical", "wallHorizontal"];
 
+var lives = 1; // number of lives that the user has
 var currentLevel = 0; // starting level
 var hasMoney = false; // is the rider on?
 var currentLocationOfPlayer = 0;
@@ -149,7 +164,7 @@ function tryToMove(direction) {
         
         // if next box is a flag, go up a level
         levelUp(nextClass);
-      }, 350);
+      },300);
       return;
     } // if hasMoney
     
@@ -177,12 +192,29 @@ function tryToMove(direction) {
   
   // if it is an enemy
   if (nextClass.includes("enemy")) {
-    menuCounter = 1;
-    document.getElementById("button").innerHTML = "Try Again!";
-    document.getElementById("button").onclick = function() {startGame()};
-    clearTimeout(currentAnimation);
-    showLightBox("Game Over", "You got caught.");
-    return;
+    
+    if (lives > 1) {
+      menuCounter = 1;
+      lives--;
+      clearTimeout(currentAnimation);
+      document.getElementById("button").innerHTML = "Restart Level";
+      document.getElementById("button").onclick = function() {
+        menuCounter = 2;
+        changeVisibility("lightbox");
+        changeVisibility("boundaryMessage");
+        loadLevel()
+      };
+      showLightBox("You got caught!", "Use one of your lives.");
+      return;
+    } else if (lives == 1) {
+      menuCounter = 1;
+      clearTimeout(currentAnimation);
+      document.getElementById("button").innerHTML = "Restart Game";
+      document.getElementById("button").onclick = function() {startGame()};
+      showLightBox("Game Over", "You got caught.");
+      return;
+    } // if
+    
   } // if
   
   // move up to next level if needed
@@ -199,7 +231,9 @@ function levelUp(nextClass) {
       document.getElementById("button").onclick = function() {startGame()};
       showLightBox("Game Over", "You have finish the game.");
       return;
-    }
+    } // if
+    lives++;
+    document.getElementById("livesLeft").innerHTML = "Lives Left: " + lives;
     document.getElementById("levelup").innerHTML = "Level " + (currentLevel + 2);
     document.getElementById("levelup").style.display = "block";
     clearTimeout(currentAnimation);
@@ -228,6 +262,9 @@ function loadLevel() {
   animateBoxes = document.querySelectorAll(".animate");
   
   animateEnemy(animateBoxes, 0, "right");
+  
+  document.getElementById("livesLeft").innerHTML = "Lives Left: " + lives;
+
   
 } // loadLevel
 
@@ -260,14 +297,30 @@ function animateEnemy(boxes, index, direction) {
   } // for
   
   // if enemy hits player
-  if (boxes[index].className.includes("horse")) {
-    menuCounter = 1;
-    clearTimeout(currentAnimation);
-    document.getElementById("button").innerHTML = "Restart Game";
-    document.getElementById("button").onclick = function() {startGame()};
-    showLightBox("Game Over", "You got caught.");
-    return;
-  }
+  if (boxes[index].className.includes("player")) {
+    if (lives > 1) {
+      menuCounter = 1;
+      lives--;
+      clearTimeout(currentAnimation);
+      document.getElementById("button").innerHTML = "Restart Level";
+      document.getElementById("button").onclick = function() {
+        menuCounter = 2;
+        changeVisibility("lightbox");
+        changeVisibility("boundaryMessage");
+        loadLevel()
+      };
+      showLightBox("You got caught!", "Use one of your lives.");
+      return;
+    } else if (lives == 1) {
+      menuCounter = 1;
+      clearTimeout(currentAnimation);
+      document.getElementById("button").innerHTML = "Restart Game";
+      document.getElementById("button").onclick = function() {startGame()};
+      showLightBox("Game Over", "You got caught.");
+      return;
+    } // if
+    
+  } // if
   
   // moving right
   if (direction == "right") {
@@ -305,13 +358,12 @@ function changeVisibility(divId) {
 	
 	// if element exists, it is considered true
   
-  //if (elem) {
     if (menuCounter == 1) {
       elem.className = 'unhidden';
     } else if (menuCounter == 2) {
       elem.className = 'hidden';
-    }
-  //} // if
+    } // if
+
 
 } //changeVisibility
 
@@ -337,6 +389,7 @@ function startGame() {
   currentLevel = 0; 
   hasMoney = false; 
   currentLocationOfPlayer = 0;
+  lives = 1;
   clearTimeout(currentAnimation);
   
   loadLevel();
@@ -345,13 +398,13 @@ function startGame() {
 /***** End Lightbox Code *****/
 
 function menu1(message, message2) {
-  message = "Welcome to 'The hunt for Robbers!'";
-  message2 = "You, the player, will play as the robber that is trying to evade the police.";
+  message = "Welcome to 'The Hunt for Robbers!'";
+  message2 = "You, the player, will play as the robber that is trying to evade security.";
   showLightBox(message, message2);
 } // menu1
 function menu2(message, message2) {
   message = "Instructions.";
-  message2 = "You will use arrow keys to move the robber.";
+  message2 = "You will use the arrow keys to move the robber. Your goal is to get the money bag and then head for the flag with a door in front. You can only get through the door only if you have the money bag. Each level you progress gives you another life. If you get caught, you must use a life and it will allow you to restart the level you are on.";
   document.getElementById("button").innerHTML = "Start Game!";
   document.getElementById("button").onclick = function() {startGame()};
   showLightBox(message, message2);
